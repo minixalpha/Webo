@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/md__list_selector_holo_dark" >
+
+    <include
+        android:id="@+id/user_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/user_info_layout" />
+
+    <LinearLayout
+        android:id="@+id/basic_function"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_info"
+        android:orientation="vertical"
+        android:paddingTop="50dp" >
+
+        <Button
+            android:id="@+id/btn_home"
+            style="@style/LeftMenuButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/home_32"
+            android:text="@string/home" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5pt"
+            android:background="@color/grey" />
+
+        <Button
+            android:id="@+id/btn_search"
+            style="@style/LeftMenuButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/search_32"
+            android:text="@string/search" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5pt"
+            android:background="@color/grey" />
+
+        <Button
+            android:id="@+id/btn_configure"
+            style="@style/LeftMenuButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/configure_32"
+            android:text="@string/configure" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5pt"
+            android:background="@color/grey" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_exit"
+        style="@style/LeftMenuButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:drawableLeft="@drawable/exit_32"
+        android:text="@string/exit" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5pt"
+        android:layout_above="@id/btn_exit"
+        android:background="@color/grey" />
+
+</RelativeLayout>

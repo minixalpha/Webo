@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/create_weibo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#00000000"
+        android:gravity="left"
+        android:hint="@string/comment_hint"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp" >
+
+        <CheckBox
+            android:id="@+id/add_action"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:text="@string/holder" />
+
+        <TextView
+            android:id="@+id/words_limit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:paddingRight="10dp"
+            android:text="@string/words_limit" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/weibo_footer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#E8E8E8"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/btn_clear"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_custom"
+            android:contentDescription="@string/clear"
+            android:paddingLeft="20dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/clear_32" />
+
+        <ImageButton
+            android:id="@+id/btn_send"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_custom"
+            android:contentDescription="@string/post"
+            android:paddingLeft="20dp"
+            android:src="@drawable/send_32" />
+    </LinearLayout>
+
+</LinearLayout>

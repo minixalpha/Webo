@@ -1,0 +1,10 @@
+<resources>
+
+    <color name="md__transparent">#00000000</color>
+
+    <color name="md__defaultBackground">#FF555555</color>
+    
+    <color name="black">#000000</color>
+    
+    <color name="grey">#7D7A7A</color>
+</resources>

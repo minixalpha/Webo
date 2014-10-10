@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.minixalpha.webo.ViewWeiboActivity" >
+
+    <item
+        android:id="@+id/weibo"
+        android:icon="@drawable/weibo_24"
+        android:showAsAction="always"
+        android:title="@string/weibo"/>
+    <item
+        android:id="@+id/write"
+        android:icon="@drawable/write_24"
+        android:showAsAction="always"
+        android:title="@string/write"/>
+    <item
+        android:id="@+id/message"
+        android:icon="@drawable/message_24"
+        android:showAsAction="always"
+        android:title="@string/message"/>
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_settings"/>
+    <item
+        android:id="@+id/action"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/cache"/>
+
+</menu>

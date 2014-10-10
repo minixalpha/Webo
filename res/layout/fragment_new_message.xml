@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/newmsg_area"
+        android:name="com.minixalpha.webo.ViewCommentFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/weibo_footer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#E8E8E8"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/newmsg_btn_comment"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_custom"
+            android:contentDescription="@string/post"
+            android:paddingLeft="20dp"
+            android:src="@drawable/comments_red_32" />
+
+        <ImageButton
+            android:id="@+id/newmsg_btn_at"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_custom"
+            android:contentDescription="@string/clear"
+            android:paddingLeft="20dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/at_thin_50" />
+    </LinearLayout>
+
+</LinearLayout>
