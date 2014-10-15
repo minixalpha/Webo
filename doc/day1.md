@@ -1,13 +1,13 @@
 # 新浪微博第三方客户端　Webo 开发手记
 
-2014.09.28
 
 ## 新建　Android Project
 
 ### 版本
+
 minimum version: 4.0, target version: 4.2, maximum version: 4.4
 
-### 新建 Android Project 
+### 建立 Hello World Project 
 
 建立一个　Hello World Project 测试一下环境
 
@@ -34,6 +34,4 @@ minimum version: 4.0, target version: 4.2, maximum version: 4.4
 
 不过默认的　UI 非常丑，要怎么修改呢？
 
-
-
-
+2014.09.28
