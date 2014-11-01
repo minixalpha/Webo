@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/weibo_footer"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="#E8E8E8"
+    android:baselineAligned="true"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/btn_repost"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@drawable/button_custom"
+        android:clickable="true"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/repost_image"
+            style="@style/weiboBtnImage"
+            android:contentDescription="@string/holder"
+            android:paddingLeft="0dp"
+            android:src="@drawable/retweet_32" />
+
+        <TextView
+            android:id="@+id/repost_count"
+            style="@style/weiboBtnText"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="1dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_comment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_custom"
+        android:clickable="true"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/comment_image"
+            style="@style/weiboBtnImage"
+            android:layout_marginLeft="10dp"
+            android:contentDescription="@string/holder"
+            android:paddingLeft="0dp"
+            android:src="@drawable/comments_32" />
+
+        <TextView
+            android:id="@+id/comment_count"
+            style="@style/weiboBtnText"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:gravity="top|bottom" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_favour"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/button_custom"
+        android:clickable="true"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/like_image"
+            style="@style/weiboBtnImage"
+            android:layout_marginLeft="15dp"
+            android:contentDescription="@string/holder"
+            android:paddingLeft="0dp"
+            android:src="@drawable/like_32" />
+
+        <TextView
+            android:id="@+id/favor_count"
+            style="@style/weiboBtnText" />
+    </LinearLayout>
+
+</LinearLayout>

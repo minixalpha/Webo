@@ -4,7 +4,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.minixalpha.control.ViewWeiboHelper;
 import com.minixalpha.control.WeiboController;
 import com.minixalpha.model.Cache;
-import com.minixalpha.model.StatusAdapter;
+import com.minixalpha.model.WeiboItemAdapter;
 import com.minixalpha.util.WeiboAPI;
 import com.minixalpha.view.UserInfoView;
 import com.sina.weibo.sdk.exception.WeiboException;
@@ -38,11 +38,12 @@ public class HomePageActivity extends Activity implements ViewWeiboHelper {
 	}
 
 	private void initUserTimeline() {
-		mTimeLineControllor = new WeiboController(this);
+		mTimeLineControllor = new WeiboController(this,
+				R.layout.home_weibo_item);
 
 		mTimeLineView = (PullToRefreshListView) findViewById(R.id.timeline);
 
-		StatusAdapter statusAdapter = mTimeLineControllor.getAdapter();
+		WeiboItemAdapter statusAdapter = mTimeLineControllor.getAdapter();
 		Log.d(TAG, statusAdapter.toString());
 		mTimeLineView.setAdapter(statusAdapter);
 

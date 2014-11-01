@@ -1,10 +1,21 @@
 package com.minixalpha.webo;
 
+import com.minixalpha.model.Cache;
+import com.minixalpha.util.Utils;
+import com.minixalpha.util.WeiboAPI;
+import com.sina.weibo.sdk.exception.WeiboException;
+import com.sina.weibo.sdk.net.RequestListener;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 public class ConfigureActivity extends Activity {
 
@@ -13,6 +24,41 @@ public class ConfigureActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_configure);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		init();
+	}
+
+	private void init() {
+		View clearCache = findViewById(R.id.clear_cache);
+		clearCache.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				AlertDialog.Builder dialog = new AlertDialog.Builder(
+						ConfigureActivity.this);
+				dialog.setTitle(Utils.loadFromResource(R.string.prompt_title));
+				dialog.setMessage(R.string.clear_cache_prompt);
+				dialog.setPositiveButton(R.string.ok,
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								Cache.clearAll();
+							}
+						});
+				dialog.setNegativeButton(R.string.cancel,
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								dialog.dismiss();
+							}
+						});
+				dialog.show();
+			}
+
+		});
 	}
 
 	@Override

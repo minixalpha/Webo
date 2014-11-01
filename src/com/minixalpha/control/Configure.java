@@ -29,4 +29,14 @@ public class Configure {
 				.showImageOnLoading(R.drawable.avatar).cacheInMemory(true)
 				.cacheOnDisk(true).build();
 	}
+
+	public static DisplayImageOptions getWeiboImageDisplayImageOptions() {
+		return new DisplayImageOptions.Builder()
+				.showImageOnFail(R.drawable.weibo_image_holder)
+				.cacheOnDisk(true).build();
+	}
+
+	public static DisplayImageOptions getFullScreenImageDisplayImageOptions() {
+		return new DisplayImageOptions.Builder().cacheOnDisk(true).build();
+	}
 }

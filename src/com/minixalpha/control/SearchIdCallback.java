@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.minixalpha.model.Cache;
 import com.minixalpha.model.SearchResult;
-import com.minixalpha.model.StatusAdapter;
+import com.minixalpha.model.WeiboItemAdapter;
 import com.minixalpha.model.Weibo;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.RequestListener;
@@ -47,7 +47,7 @@ public class SearchIdCallback implements RequestListener {
 			mCompleteN++;
 			
 			if (mCompleteN == mTotalN) {
-				StatusAdapter.setTextViewLink(mTextview, mCurtext);
+				WeiboItemAdapter.setTextViewLink(mTextview, mCurtext);
 			}
 		}
 	}

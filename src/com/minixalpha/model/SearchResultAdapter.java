@@ -6,6 +6,7 @@ import com.minixalpha.control.WeiboController;
 import com.minixalpha.util.Utils;
 import com.minixalpha.util.WeiboAPI;
 import com.minixalpha.webo.R;
+import com.minixalpha.webo.WeboApplication;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.sina.weibo.sdk.openapi.UsersAPI;
@@ -71,7 +72,7 @@ public class SearchResultAdapter extends ArrayAdapter<SearchResult> {
 						// 调用 User#parse 将JSON串解析成User对象
 						User user = User.parse(response);
 						if (user != null) {
-							WeiboController.getImageLoader().displayImage(
+							WeboApplication.getImageLoader().displayImage(
 									user.avatar_large, avatar);
 						}
 					} else {

@@ -21,6 +21,7 @@
         android:layout_weight="1"
         android:divider="@android:color/transparent"
         android:dividerHeight="10dp"
-        ptr:ptrAnimationStyle="flip" />
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrMode="both" />
 
 </LinearLayout>

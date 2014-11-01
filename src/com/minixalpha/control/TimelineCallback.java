@@ -3,6 +3,7 @@ package com.minixalpha.control;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.minixalpha.util.Utils;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.sina.weibo.sdk.openapi.models.ErrorInfo;
@@ -60,8 +61,8 @@ public class TimelineCallback implements RequestListener {
 	public void onWeiboException(WeiboException e) {
 		LogUtil.e(TAG, e.getMessage());
 		ErrorInfo info = ErrorInfo.parse(e.getMessage());
-		Toast.makeText(mControllor.getViewWeiboActivity(), info.toString(),
-				Toast.LENGTH_LONG).show();
+		Utils.showMsg(info.toString());
+		mControllor.getTimeLineView().onRefreshComplete();
 		mControllor.actionAfterUpdate();
 	}
 

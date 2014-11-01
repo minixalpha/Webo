@@ -19,5 +19,15 @@ public interface ViewCommentHelper {
 	public String getCache();
 
 	public void updateCache(String response);
+
+	/**
+	 * 请求的内容已经返回，此时可以关闭进度条
+	 */
+	public void onRequestComplete();
 	
+	/**
+	 * 请求之前的动作
+	 */
+	public void beforeRequest();
+
 }

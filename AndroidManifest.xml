@@ -77,9 +77,23 @@
         <activity
             android:name=".ConfigureActivity"
             android:label="@string/title_activity_configure" >
-             <meta-data
+            <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ViewPagerActivity" />
+        </activity>
+        <activity
+            android:name=".ShowImageActivity"
+            android:label="@string/title_activity_show_image"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".ShowImagesViewPagerActivity"
+            android:label="@string/title_activity_show_images_view_pager"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".TestDecorateTextViewActivity"
+            android:label="@string/title_activity_test_decorate_text_view" >
         </activity>
     </application>
 

@@ -31,10 +31,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.view.Display;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 public class Utils {
@@ -218,7 +221,7 @@ public class Utils {
 
 		return jsonObject;
 	}
-	
+
 	public static String toJson(Status status) {
 		return toJsonObject(status).toString();
 	}
@@ -378,6 +381,7 @@ public class Utils {
 	private static List<String> getPatternList(String regex, String source) {
 		List<String> resutlList = new ArrayList<>();
 
+		/* TODO: 避免反复编译 */
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(source);
 		String preResult = null;
@@ -426,9 +430,7 @@ public class Utils {
 		NotificationManager mNotificationManager = (NotificationManager) WeboApplication
 				.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
 		mNotificationManager.notify(notification_id, notification);
-
 		mNotificationManager.cancel(notification_id);
-
 		notification_id++;
 	}
 
@@ -444,5 +446,18 @@ public class Utils {
 	public static void showMsg(int rid) {
 		Toast.makeText(WeboApplication.getContext(), rid, Toast.LENGTH_SHORT)
 				.show();
+	}
+
+	public static int getScreenWidth() {
+		WindowManager wm = (WindowManager) mContext
+				.getSystemService(Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		return size.x;
+	}
+
+	public static String getMiddlePicURL(String thumbnailPicURL) {
+		return thumbnailPicURL.replace("thumbnail", "bmiddle");
 	}
 }

@@ -8,7 +8,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.minixalpha.model.Cache;
-import com.minixalpha.model.StatusAdapter;
+import com.minixalpha.model.WeiboItemAdapter;
 import com.minixalpha.util.Utils;
 import com.minixalpha.util.WeiboAPI;
 import com.minixalpha.webo.R;
@@ -39,7 +39,7 @@ public class WeiboController {
 
 	private ViewWeiboHelper mViewWeiboHelper;
 
-	private StatusAdapter mStatusAdapter;
+	private WeiboItemAdapter mStatusAdapter;
 
 	/* 微博内容 */
 	private LinkedList<Status> mWeiboList;
@@ -52,10 +52,13 @@ public class WeiboController {
 	/* 获取微博后的回调接口 */
 	private RequestListener mRequestCallback;
 
-	/* 图片缓存　 */
-	private static ImageLoader imageLoader;
+	private static final int DEFAULT_WEIBO_ITEM_ID = R.layout.weibo_full_item;
 
 	public WeiboController(ViewWeiboHelper viewWeiboHelper) {
+		this(viewWeiboHelper, DEFAULT_WEIBO_ITEM_ID);
+	}
+
+	public WeiboController(ViewWeiboHelper viewWeiboHelper, int weiboItemResId) {
 		mViewWeiboHelper = viewWeiboHelper;
 
 		mViewWeiboActivity = viewWeiboHelper.getViewActivity();
@@ -67,20 +70,10 @@ public class WeiboController {
 		Log.d(TAG, mWeiboList.toString());
 
 		// context 需要用 listview 所在的　activity，不能用全局 context
-		mStatusAdapter = new StatusAdapter(mViewWeiboActivity,
-				R.layout.weibo_full_item, mWeiboList);
+		mStatusAdapter = new WeiboItemAdapter(mViewWeiboActivity, weiboItemResId,
+				mWeiboList);
 
 		mRequestCallback = new TimelineCallback(WeiboController.this);
-
-		if (imageLoader == null) {
-			// 初始化全局图片缓存组件
-			imageLoader = ImageLoader.getInstance();
-			imageLoader.init(Configure.getImageCacheConfig());
-		}
-	}
-
-	public static ImageLoader getImageLoader() {
-		return imageLoader;
 	}
 
 	/**
@@ -91,7 +84,7 @@ public class WeiboController {
 		setTimeLine();
 	}
 
-	public StatusAdapter getStatusAdapter() {
+	public WeiboItemAdapter getStatusAdapter() {
 		return mStatusAdapter;
 	}
 
@@ -138,12 +131,14 @@ public class WeiboController {
 			hasCache = true;
 		} else {
 			Log.d(TAG, "no cache");
-			requestTimeLine();
+			requestTimeLine(true);
 		}
 	}
 
 	/**
 	 * 将 json 格式的多条微博转化为　statusList，并更新时间线
+	 * 
+	 * 如果请求的是新微博，则去除原有微博，否则加在原有微博后面
 	 * 
 	 * @param response
 	 *            json格式的微博列表
@@ -153,7 +148,7 @@ public class WeiboController {
 		// 调用 StatusList#parse 解析字符串成微博列表对象
 		if (response == null)
 			return null;
-
+		Log.d(TAG, response);
 		StatusList statuses = StatusList.parse(response);
 		if (statuses != null && statuses.total_number > 0
 				&& statuses.statusList != null) {
@@ -181,7 +176,13 @@ public class WeiboController {
 				// mViewWeiboHelper.actionAfterUpdate();
 				// }
 
-				mWeiboList.clear();
+				if (statusList.size() > 0
+						&& mWeiboList.size() > 0
+						&& Long.parseLong(statusList.get(0).id) > Long
+								.parseLong(mWeiboList.get(0).id)) {
+					// 获取的微博是最新微博
+					mWeiboList.clear();
+				}
 				mWeiboList.addAll(statusList);
 				mStatusAdapter.notifyDataSetChanged();
 				mViewWeiboHelper.actionAfterUpdate();
@@ -190,14 +191,17 @@ public class WeiboController {
 		return statuses;
 	}
 
-	public StatusAdapter getAdapter() {
+	public WeiboItemAdapter getAdapter() {
 		return mStatusAdapter;
 	}
 
-	// 联网请求最近微博
-	// 如果网络可用，展示进度条，请求最新微博，最新微博是指比缓存中最近的微博还新的微博
-	// 如果网络不可用，给出提示
-	private void requestTimeLine() {
+	/**
+	 * 联网请求微博 如果网络可用，展示进度条，请求最新微博，最新微博是指比缓存中最近的微博还新的微博 如果网络不可用，给出提示
+	 * 
+	 * @param isnew
+	 *            请求的是最新微博，还是以前的微博
+	 */
+	private void requestTimeLine(boolean isnew) {
 		Log.d(TAG, "requestTimeLine");
 		boolean needRefreshComplete = true;
 		boolean isNetworkAvailable = Utils.isNetworkAvailable();
@@ -214,8 +218,14 @@ public class WeiboController {
 				// }
 				// Log.d(TAG, "latestWeiboid:" + latestWeiboid);
 
-				mViewWeiboHelper.getTimeline(latestWeiboid, 0L, 10, 1, false,
-						0, false, mRequestCallback);
+				if (isnew) {
+					mViewWeiboHelper.getTimeline(latestWeiboid, 0L, 10, 1,
+							false, 0, false, mRequestCallback);
+				} else {
+					long oldWeiboID = Long.parseLong(mWeiboList.getLast().id);
+					mViewWeiboHelper.getTimeline(0L, oldWeiboID - 1, 10, 1,
+							false, 0, false, mRequestCallback);
+				}
 				needRefreshComplete = false;
 			} else {
 				Log.d(TAG, "Token is not valid");
@@ -243,16 +253,24 @@ public class WeiboController {
 			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
 				// 任务要放在异步Task中，不能放在这里
 				// onRefreshComplete 放在这里也不行
-				new GetDataTask().execute();
+				new GetLatestDataTask().execute();
 			}
 
 		};
 	}
 
-	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
+	private class GetLatestDataTask extends AsyncTask<Void, Void, String[]> {
 		@Override
 		protected void onPostExecute(String[] result) {
-			requestTimeLine();
+			/* TODO: 分离 requestTimeLine，区分UI操作与后台耗时操作 */
+
+			if (PullToRefreshBase.Mode.PULL_FROM_START == getTimeLineView()
+					.getCurrentMode()) {
+				requestTimeLine(true);
+			} else {
+				requestTimeLine(false);
+			}
+
 			super.onPostExecute(result);
 		}
 

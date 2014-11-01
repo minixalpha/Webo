@@ -4,7 +4,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.minixalpha.control.ViewCommentHelper;
 import com.minixalpha.model.Cache;
 import com.minixalpha.model.LocalEvent;
-import com.minixalpha.model.StatusAdapter;
+import com.minixalpha.model.WeiboItemAdapter;
 import com.minixalpha.model.Weibo;
 import com.minixalpha.util.Utils;
 import com.minixalpha.util.WeiboAPI;
@@ -22,10 +22,20 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 
+/**
+ * 微博详情界面，包含微博内容和所有评论
+ * 
+ * @author zhaoxk
+ * 
+ */
 public class WeiboDetailsActivity extends Activity implements ViewCommentHelper {
-	private Status mStatus;
-	PullToRefreshListView mCommentsListView;
+	private Status mCurWeibo;
+	private PullToRefreshListView mCommentsListView;
+	private ProgressBar mProgressBar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,36 +43,49 @@ public class WeiboDetailsActivity extends Activity implements ViewCommentHelper 
 		setContentView(R.layout.activity_weibo_details);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
+		// 获取微博内容
 		Intent intent = getIntent();
 		String jsonStatus = intent.getStringExtra(LocalEvent.STATUS);
-		mStatus = Status.parse(jsonStatus);
-		View view = getWindow().getDecorView();
+		mCurWeibo = Status.parse(jsonStatus);
 
-		setUserInfo(view);
-		setWeiboContent(view);
+		// 设置微博内容
+		View weibo = getLayoutInflater().inflate(R.layout.weibo_detail_header,
+				null);
+		setUserInfo(weibo);
+		setWeiboContent(weibo);
+
+		// 初始化控件
+		mProgressBar = (ProgressBar) findViewById(R.id.comment_list_progress_bar);
+		
 		mCommentsListView = (PullToRefreshListView) findViewById(R.id.comment_list);
+		mCommentsListView.getRefreshableView().addHeaderView(weibo);
 		CommentView.setListView(mCommentsListView,
 				R.layout.simple_comment_item, this);
+
+		
 	}
 
 	private void setUserInfo(View view) {
-		User user = mStatus.user;
-		StatusAdapter.setAvatar(view, R.id.avatar, user.avatar_large);
-		StatusAdapter.setTextViewLink(view, R.id.screen_name, user.screen_name);
-		StatusAdapter.setTextViewLink(view, R.id.create_at,
-				Utils.getFormatTime(mStatus.created_at));
+		User user = mCurWeibo.user;
+		WeiboItemAdapter.setAvatar(view, R.id.avatar, user.avatar_large);
+		WeiboItemAdapter.setTextViewLink(view, R.id.screen_name,
+				user.screen_name);
+		WeiboItemAdapter.setTextViewLink(view, R.id.create_at,
+				Utils.getFormatTime(mCurWeibo.created_at));
 	}
 
 	private void setWeiboContent(View view) {
-		StatusAdapter.setTextViewContent(view, R.id.main_content, mStatus.text);
+		WeiboItemAdapter.setTextViewContent(view, R.id.main_content,
+				mCurWeibo.text);
 
-		String retweetText = Weibo.getRetweetContent(mStatus.retweeted_status);
+		String retweetText = Weibo
+				.getRetweetContent(mCurWeibo.retweeted_status);
 		if (TextUtils.isEmpty(retweetText) == false) {
-			User user = mStatus.retweeted_status.user;
+			User user = mCurWeibo.retweeted_status.user;
 			Cache.updateUserId(user.screen_name, user.id);
 		}
-		StatusAdapter
-				.setTextViewContent(view, R.id.repost_content, retweetText);
+		WeiboItemAdapter.setTextViewContent(view, R.id.repost_content,
+				retweetText);
 	}
 
 	@Override
@@ -89,7 +112,7 @@ public class WeiboDetailsActivity extends Activity implements ViewCommentHelper 
 	@Override
 	public void requestComment(RequestListener listener) {
 		CommentsAPI commentAPI = WeiboAPI.getInstance().getCommentsAPI();
-		commentAPI.show(Long.parseLong(mStatus.id), 0L, 0L, 10, 1,
+		commentAPI.show(Long.parseLong(mCurWeibo.id), 0L, 0L, 10, 1,
 				CommentsAPI.AUTHOR_FILTER_ALL, listener);
 	}
 
@@ -108,6 +131,16 @@ public class WeiboDetailsActivity extends Activity implements ViewCommentHelper 
 	@Override
 	public void updateCache(String response) {
 		// NO NOTHING
+	}
+
+	@Override
+	public void onRequestComplete() {
+		mProgressBar.setVisibility(View.GONE);
+	}
+
+	@Override
+	public void beforeRequest() {
+		mProgressBar.setVisibility(View.VISIBLE);
 	}
 
 }

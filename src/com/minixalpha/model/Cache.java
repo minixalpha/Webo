@@ -22,14 +22,16 @@ public class Cache {
 			.getInstance().getCurUserId());
 	private static final String TAG = Cache.class.getName();
 	private static final String TIMELINE_FILE = "TIMELINE_DATA";
+	private static final String NAME_ID_FILE = "SCREEN_NAME_ID";
+	private static final String USER_INFO_FILE = "USER_INFO_DATA";
+
 	private static final String TIMELINE_KEY = "TIMELINE" + CUR_USRE_ID;;
 	private static final String USER_TIMELINE_KEY = "USER_TIMELINE"
-			+ CUR_USRE_ID;;
+			+ CUR_USRE_ID;
 	private static final String COMMENTS_KEY = "COMMENTS" + CUR_USRE_ID;;
-	private static final String USER_INFO_FILE = "USER_INFO_DATA";
 	private static final String AT_KEY = "ATS";
-	private static final int LIMIT = 20;
 
+	private static final int LIMIT = 20;
 	private static final Context mContext = WeboApplication.getContext();
 
 	public static void updateUserInfo(long uid, String jsonData) {
@@ -166,7 +168,16 @@ public class Cache {
 		return get(TIMELINE_FILE, AT_KEY);
 	}
 
+	/**
+	 * 清除所有缓存：时间线内容，图片
+	 */
 	public static void clearAll() {
+
+		clearTimeLine();
+		clearImage();
+	}
+
+	private static void clearTimeLine() {
 		SharedPreferences pref = mContext.getSharedPreferences(TIMELINE_FILE,
 				Context.MODE_APPEND);
 		Editor editor = pref.edit();
@@ -174,10 +185,12 @@ public class Cache {
 		editor.commit();
 	}
 
-	private static final String NAME_ID = "SCREEN_NAME_ID";
+	private static void clearImage() {
+		WeboApplication.getImageLoader().clearDiskCache();
+	}
 
 	public static void updateUserId(String screen_name, String uid) {
-		SharedPreferences pref = mContext.getSharedPreferences(NAME_ID,
+		SharedPreferences pref = mContext.getSharedPreferences(NAME_ID_FILE,
 				Context.MODE_APPEND);
 		Editor editor = pref.edit();
 		editor.putString(screen_name, uid);
@@ -186,7 +199,7 @@ public class Cache {
 	}
 
 	public static String getUserId(String screen_name) {
-		SharedPreferences pref = mContext.getSharedPreferences(NAME_ID,
+		SharedPreferences pref = mContext.getSharedPreferences(NAME_ID_FILE,
 				Context.MODE_APPEND);
 
 		String uid = pref.getString(screen_name, null);

@@ -39,6 +39,7 @@
     <string name="starred_count">Starred</string>
     <string name="weibo_count">Weibo Count</string>
     <string name="zero">0</string>
+    <string name="long_num">100000</string>
     <string name="title_activity_home_page">Home Page</string>
     <string name="title_activity_search">Search</string>
     <string name="search_title">search</string>
@@ -52,5 +53,11 @@
     <string name="title_activity_retweet_reply">RetweetReplyActivity</string>
     <string name="title_activity_weibo_details">WeiboDetailsActivity</string>
     <string name="title_activity_configure">ConfigureActivity</string>
+    <string name="title_activity_show_image">ShowImageActivity</string>
+    <string name="show_image">Show Image</string>
+    <string name="top">Top</string>
+    <string name="title_activity_show_images_view_pager">ShowImagesViewPagerActivity</string>
+    <string name="comment_on_my_weibo">Comments on My Weibo:</string>
+    <string name="title_activity_test_decorate_text_view">TestDecorateTextViewActivity</string>
 
 </resources>

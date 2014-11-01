@@ -13,7 +13,6 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.minixalpha.control.ViewCommentHelper;
-import com.minixalpha.model.Cache;
 import com.minixalpha.model.CommentsAdapter;
 import com.minixalpha.util.Utils;
 import com.minixalpha.util.WeiboAPI;
@@ -38,10 +37,7 @@ public class CommentView {
 
 		mCommentsList = new LinkedList<>();
 		mCommentsAdapter = new CommentsAdapter(
-				mViewCommentHelper.getActivity(), itemId,
-				mCommentsList);
-		Log.d(TAG, "mCommentsListView:" + (mCommentsListView == null));
-		Log.d(TAG, "mCommentsAdapter:" + (mCommentsAdapter == null));
+				mViewCommentHelper.getActivity(), itemId, mCommentsList);
 		mCommentsListView.setAdapter(mCommentsAdapter);
 		mCommentsListView.setOnRefreshListener(getOnRefreshListener());
 		setCommentList();
@@ -49,11 +45,12 @@ public class CommentView {
 
 	public static void setListView(PullToRefreshListView commentsListView,
 			ViewCommentHelper viewCommentHelper) {
-		new CommentView(commentsListView, R.layout.comment_item, viewCommentHelper);
+		new CommentView(commentsListView, R.layout.comment_item,
+				viewCommentHelper);
 	}
 
-	public static void setListView(PullToRefreshListView commentsListView, int itemId,
-			ViewCommentHelper viewCommentHelper) {
+	public static void setListView(PullToRefreshListView commentsListView,
+			int itemId, ViewCommentHelper viewCommentHelper) {
 		new CommentView(commentsListView, itemId, viewCommentHelper);
 	}
 
@@ -86,19 +83,22 @@ public class CommentView {
 		}
 	}
 
+	/**
+	 * 通过网络发起评论列表请求
+	 */
 	private void requestCommentList() {
 		boolean needRefresh = true;
 		if (Utils.isNetworkAvailable()) {
 			if (WeiboAPI.getInstance().isTokenAvailable()) {
 				needRefresh = false;
-
+				mViewCommentHelper.beforeRequest();
 				mViewCommentHelper.requestComment(new RequestListener() {
 
 					@Override
 					public void onComplete(String response) {
 						Log.d(TAG, "response:" + response);
+						mViewCommentHelper.onRequestComplete();
 						displayComments(response);
-
 						mViewCommentHelper.updateCache(response);
 						mCommentsListView.onRefreshComplete();
 					}

@@ -10,7 +10,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.minixalpha.model.AtStatusAdapter;
 import com.minixalpha.model.Cache;
 import com.minixalpha.model.CommentsAdapter;
-import com.minixalpha.model.StatusAdapter;
+import com.minixalpha.model.WeiboItemAdapter;
 import com.minixalpha.util.Utils;
 import com.minixalpha.util.WeiboAPI;
 import com.sina.weibo.sdk.exception.WeiboException;

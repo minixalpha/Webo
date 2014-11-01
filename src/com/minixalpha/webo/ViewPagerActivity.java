@@ -3,7 +3,6 @@ package com.minixalpha.webo;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-import com.minixalpha.model.Cache;
 import com.minixalpha.model.LocalEvent;
 import com.minixalpha.util.Utils;
 import com.minixalpha.util.WeiboAPI;
@@ -12,9 +11,6 @@ import com.minixalpha.view.Item;
 import com.minixalpha.view.UserInfoView;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.RequestListener;
-import com.sina.weibo.sdk.openapi.UsersAPI;
-import com.sina.weibo.sdk.openapi.models.User;
-import com.sina.weibo.sdk.utils.LogUtil;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
@@ -31,7 +27,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -45,7 +40,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ViewPagerActivity extends BaseFragmentActivity {
 	private static final String TAG = ViewPagerActivity.class.getName();
@@ -112,7 +106,7 @@ public class ViewPagerActivity extends BaseFragmentActivity {
 
 						return false;
 					}
-				});
+				});	
 
 		initLefMenu(mMenuDrawer.getMenuView());
 	}
@@ -170,7 +164,7 @@ public class ViewPagerActivity extends BaseFragmentActivity {
 				AlertDialog.Builder dialog = new AlertDialog.Builder(
 						ViewPagerActivity.this);
 				dialog.setTitle(Utils.loadFromResource(R.string.prompt_title));
-				dialog.setMessage(R.string.prompt);
+				dialog.setMessage(R.string.logout_prompt);
 				dialog.setPositiveButton(R.string.ok,
 						new DialogInterface.OnClickListener() {
 

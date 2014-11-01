@@ -14,10 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 public class ViewCommentFragment extends Fragment implements ViewCommentHelper {
 	private static final String TAG = ViewCommentFragment.class.getName();
-	PullToRefreshListView mCommentsListView;
+	private PullToRefreshListView mCommentsListView;
+	private ProgressBar mProgressBar;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,6 +28,7 @@ public class ViewCommentFragment extends Fragment implements ViewCommentHelper {
 				R.layout.fragment_new_comments);
 		mCommentsListView = (PullToRefreshListView) view.findViewById(R.id.comment_list);
 		CommentView.setListView(mCommentsListView, this);
+		mProgressBar = (ProgressBar) view.findViewById(R.id.comment_list_progress_bar);
 
 		return view;
 	}
@@ -57,6 +60,16 @@ public class ViewCommentFragment extends Fragment implements ViewCommentHelper {
 	@Override
 	public void updateCache(String response) {
 		Cache.updateComment(response);
+	}
+
+	@Override
+	public void onRequestComplete() {
+		mProgressBar.setVisibility(View.GONE);
+	}
+
+	@Override
+	public void beforeRequest() {
+		mProgressBar.setVisibility(View.VISIBLE);
 	}
 	
 }

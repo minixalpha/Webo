@@ -94,8 +94,7 @@ public class CreateWeiboFragment extends Fragment {
 				} else {
 					String networkHint = getResources().getString(
 							R.string.network_not_available);
-					Toast.makeText(WeboApplication.getContext(), networkHint,
-							Toast.LENGTH_SHORT).show();
+					Utils.showMsg(networkHint);
 				}
 			}
 		}

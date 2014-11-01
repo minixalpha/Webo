@@ -77,13 +77,11 @@ public class AtStatusAdapter extends ArrayAdapter<Status> {
 		}
 		setTextViewContent(view, R.id.repost_content, retweetText);
 
-
 		return view;
 	}
 
 	public static void setTextViewContent(View view, int id, String text) {
 		TextView tv = (TextView) view.findViewById(id);
-	
 
 		List<String> atList = Utils.getAtList(text);
 		String curtext = text;
@@ -101,9 +99,6 @@ public class AtStatusAdapter extends ArrayAdapter<Status> {
 			return;
 		}
 
-		SearchIdCallback searchIdCallback = new SearchIdCallback(tv, curtext,
-				completeN, totalN);
-		SearchAPI searchAPI = WeiboAPI.getInstance().getSearchAPI();
 		for (final String atName : atList) {
 			String uid = Cache.getUserId(atName);
 			if (TextUtils.isEmpty(uid)) {
@@ -116,6 +111,9 @@ public class AtStatusAdapter extends ArrayAdapter<Status> {
 					} catch (UnsupportedEncodingException e1) {
 						e1.printStackTrace();
 					}
+					SearchIdCallback searchIdCallback = new SearchIdCallback(
+							tv, curtext, completeN, totalN);
+					SearchAPI searchAPI = WeiboAPI.getInstance().getSearchAPI();
 					Log.d(TAG, "search:" + atName);
 					searchAPI.users(atName, 1, searchIdCallback);
 				} else {
@@ -159,10 +157,9 @@ public class AtStatusAdapter extends ArrayAdapter<Status> {
 		setTextViewLink(tv, content);
 	}
 
-
 	public static void setAvatar(View view, int id, String addr) {
 		ImageView imageView = (ImageView) view.findViewById(id);
-		WeiboController.getImageLoader().displayImage(addr, imageView,
+		WeboApplication.getImageLoader().displayImage(addr, imageView,
 				Configure.getAvatarDisplayOptions());
 		Log.d(TAG, "setAvatar");
 	}

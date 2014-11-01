@@ -6,7 +6,7 @@ import java.util.List;
 import com.minixalpha.model.Cache;
 import com.minixalpha.model.SearchResult;
 import com.minixalpha.model.SearchResultAdapter;
-import com.minixalpha.model.StatusAdapter;
+import com.minixalpha.model.WeiboItemAdapter;
 import com.minixalpha.model.Weibo;
 import com.minixalpha.util.Utils;
 import com.minixalpha.util.WeiboAPI;

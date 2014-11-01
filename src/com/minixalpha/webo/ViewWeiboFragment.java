@@ -1,16 +1,12 @@
 package com.minixalpha.webo;
 
-import java.util.List;
-
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.minixalpha.control.ViewWeiboHelper;
 import com.minixalpha.control.WeiboController;
 import com.minixalpha.model.Cache;
-import com.minixalpha.model.StatusAdapter;
-import com.minixalpha.util.Utils;
+import com.minixalpha.model.WeiboItemAdapter;
 import com.minixalpha.util.WeiboAPI;
 import com.sina.weibo.sdk.net.RequestListener;
-import com.sina.weibo.sdk.openapi.models.Status;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -20,8 +16,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
@@ -51,7 +45,7 @@ public class ViewWeiboFragment extends Fragment implements ViewWeiboHelper {
 		mProgressBar = (ProgressBar) view
 				.findViewById(R.id.timeline_progressbar);
 
-		StatusAdapter statusAdapter = mTimeLineControllor.getAdapter();
+		WeiboItemAdapter statusAdapter = mTimeLineControllor.getAdapter();
 		Log.d(TAG, statusAdapter.toString());
 		mTimeLineView.setAdapter(statusAdapter);
 
@@ -105,7 +99,8 @@ public class ViewWeiboFragment extends Fragment implements ViewWeiboHelper {
 
 		WeiboAPI.getInstance()
 				.getStatusesAPI()
-				.friendsTimeline(since_id, 0L, 10, 1, false, 0, false, listener);
+				.friendsTimeline(since_id, max_id, count, page, base_app,
+						featureType, trim_user, listener);
 
 	}
 
