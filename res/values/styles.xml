@@ -61,6 +61,8 @@
         <item name="android:background">@drawable/md__list_selector_holo_dark</item>
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="confItem">
@@ -70,31 +72,67 @@
         <item name="android:paddingBottom">10dp</item>
         <item name="android:gravity">center|left</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
     </style>
 
-    <style name="weiboBtnImage">
+    <style name="WeiboBtnImage">
         <item name="android:layout_width">16dp</item>
         <item name="android:layout_height">16dp</item>
         <item name="android:layout_marginRight">5dp</item>
     </style>
 
-    <style name="weiboBtnText">
+    <style name="WeiboBtnText">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">16dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:text">1000000</item>
         <item name="android:layout_marginRight">5dp</item>
     </style>
 
-    <style name="confTitle">
+    <style name="ConfTitle">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">15sp</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingTop">5dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="LeftMenuText">
+    <style name="WhiteBold">
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="UserInfoText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="UserInfoTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:drawableLeft">@drawable/avatar_48</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">20dp</item>
+    </style>
+
+    <style name="UserInfoTitle.WhiteBold">
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="UserInfoText.WhiteBold">
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="UserInfoTextRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">10dp</item>
     </style>
 
     <style name="WeboActionBar" parent="@android:style/Theme.Holo.Light">
@@ -103,6 +141,177 @@
 
     <style name="MyActionBarTab" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
         <item name="android:width">30dp</item>
+    </style>
+
+    <style name="CommonListView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:divider">@android:color/transparent</item>
+        <item name="android:dividerHeight">10dp</item>
+    </style>
+
+    <style name="LoginButton">
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">50dp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="EqualWeightBtn" parent="android:attr/buttonBarStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/button_custom</item>
+    </style>
+
+    <style name="EqualWeightElement">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="EditWeiboTag">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="EditWeiboTag.LEFT">
+        <item name="android:layout_alignParentLeft">true</item>
+    </style>
+
+    <style name="EditWeiboTag.RIGHT">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+
+    <style name="EditWeiboText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">#00000000</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+    </style>
+
+    <style name="HorizontalEqualWeight">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="WeiboText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+    </style>
+
+    <style name="WeiboText.GREY">
+        <item name="android:background">#EEEEEE</item>
+    </style>
+
+    <style name="WeiboImages">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:numColumns">3</item>
+        <item name="android:stretchMode">columnWidth</item>
+        <item name="android:verticalSpacing">5dp</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="WeiboImages.GREY">
+        <item name="android:background">#EEEEEE</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+
+    <style name="WeiboBtn">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="WeiboBody">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">1dp</item>
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+
+    <style name="Avatar">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+    </style>
+
+    <style name="Avatar.MID">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+    </style>
+
+    <style name="Avatar.SMALL">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+    </style>
+
+    <style name="ScreenName">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_toRightOf">@id/avatar</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:text">@string/holder</item>
+        <item name="android:textColorLink">#3E90C7</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="WeiboSource">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:text">@string/holder</item>
+        <item name="android:textColorLink">#3E90C7</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="WeiboCreateAt">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:text">@string/holder</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#BBBBBB</item>
+    </style>
+
+    <style name="WeiboHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginBottom">1dp</item>
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="WeiboHeader.SMALL">
+        <item name="android:layout_height">40dp</item>
+    </style>
+
+    <style name="WeiboHeader.MID">
+        <item name="android:layout_height">60dp</item>
     </style>
 
 </resources>

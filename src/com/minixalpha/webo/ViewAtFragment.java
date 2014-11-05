@@ -7,21 +7,17 @@ import java.util.ListIterator;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.minixalpha.model.AtStatusAdapter;
-import com.minixalpha.model.Cache;
-import com.minixalpha.model.CommentsAdapter;
-import com.minixalpha.model.WeiboItemAdapter;
-import com.minixalpha.util.Utils;
-import com.minixalpha.util.WeiboAPI;
+import com.minixalpha.webo.adapter.AtStatusAdapter;
+import com.minixalpha.webo.data.Cache;
+import com.minixalpha.webo.utils.Utils;
+import com.minixalpha.webo.utils.WeiboAPI;
+import com.minixalpha.webo.view.ProgressBarFactory;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.sina.weibo.sdk.openapi.StatusesAPI;
-import com.sina.weibo.sdk.openapi.models.Comment;
-import com.sina.weibo.sdk.openapi.models.CommentList;
 import com.sina.weibo.sdk.openapi.models.Status;
 import com.sina.weibo.sdk.openapi.models.StatusList;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -33,6 +29,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 public class ViewAtFragment extends Fragment {
 	private static final String TAG = ViewAtFragment.class.getName();
@@ -40,6 +37,7 @@ public class ViewAtFragment extends Fragment {
 	private PullToRefreshListView mAtsListView;
 	private LinkedList<Status> mAtsList;
 	private AtStatusAdapter mAtsAdapter;
+	private ProgressBar mProgressBar;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,9 +46,10 @@ public class ViewAtFragment extends Fragment {
 				R.layout.fragment_new_ats);
 
 		mAtsListView = (PullToRefreshListView) view.findViewById(R.id.at_list);
+		mProgressBar = ProgressBarFactory.getProgressBar(mAtsListView);
 
 		mAtsList = new LinkedList<>();
-		mAtsAdapter = new AtStatusAdapter(getActivity(), R.layout.comment_item,
+		mAtsAdapter = new AtStatusAdapter(getActivity(), R.layout.item_at,
 				mAtsList);
 		mAtsListView.setAdapter(mAtsAdapter);
 		mAtsListView.setOnRefreshListener(getOnRefreshListener());
@@ -59,15 +58,16 @@ public class ViewAtFragment extends Fragment {
 	}
 
 	private void setAtList() {
+		if (mAtsList.isEmpty() && mAtsListView.isRefreshing() == false) {
+			mProgressBar.setVisibility(View.VISIBLE);
+		}
+
 		String response = Cache.getAts();
 		boolean hasCache = !TextUtils.isEmpty(response);
-
 		if (hasCache) {
 			displayAts(response);
-			Log.d(TAG, "has cache:" + response);
 		} else {
 			requestAtList();
-			Log.d(TAG, "no cache");
 		}
 	}
 
@@ -83,6 +83,7 @@ public class ViewAtFragment extends Fragment {
 					mAtsList.addFirst(iter.previous());
 				}
 				mAtsAdapter.notifyDataSetChanged();
+				mProgressBar.setVisibility(View.GONE);
 			}
 		}
 	}

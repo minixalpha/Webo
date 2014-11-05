@@ -59,5 +59,16 @@
     <string name="title_activity_show_images_view_pager">ShowImagesViewPagerActivity</string>
     <string name="comment_on_my_weibo">Comments on My Weibo:</string>
     <string name="title_activity_test_decorate_text_view">TestDecorateTextViewActivity</string>
+    <string name="basic_conf">Basic Configuration</string>
+    <string name="notification_conf">Notification Configuration</string>
+    <string name="image_conf">Image Configuration</string>
+    <string name="other_conf">Others</string>
+    <string name="auto_refresh">Auto Refresh</string>
+    <string name="font_size">Font Size</string>
+    <string name="weito_notify">New Weibo Notification</string>
+    <string name="newmsg_notify">New Message Notification</string>
+    <string name="display_image">Display Image</string>
+    <string name="clear_cache">Clear Cache</string>
+    <string name="about">About</string>
 
 </resources>

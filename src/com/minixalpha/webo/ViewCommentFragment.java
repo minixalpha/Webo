@@ -1,10 +1,11 @@
 package com.minixalpha.webo;
 
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.minixalpha.control.ViewCommentHelper;
-import com.minixalpha.model.Cache;
-import com.minixalpha.util.WeiboAPI;
-import com.minixalpha.view.CommentView;
+import com.minixalpha.webo.control.ViewCommentHelper;
+import com.minixalpha.webo.data.Cache;
+import com.minixalpha.webo.utils.WeiboAPI;
+import com.minixalpha.webo.view.CommentView;
+import com.minixalpha.webo.view.ProgressBarFactory;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.sina.weibo.sdk.openapi.CommentsAPI;
 import android.os.Bundle;
@@ -26,9 +27,10 @@ public class ViewCommentFragment extends Fragment implements ViewCommentHelper {
 			Bundle savedInstanceState) {
 		View view = initFragement(inflater, container,
 				R.layout.fragment_new_comments);
-		mCommentsListView = (PullToRefreshListView) view.findViewById(R.id.comment_list);
+		mCommentsListView = (PullToRefreshListView) view
+				.findViewById(R.id.comment_list);
+		mProgressBar = ProgressBarFactory.getProgressBar(mCommentsListView);
 		CommentView.setListView(mCommentsListView, this);
-		mProgressBar = (ProgressBar) view.findViewById(R.id.comment_list_progress_bar);
 
 		return view;
 	}
@@ -47,7 +49,6 @@ public class ViewCommentFragment extends Fragment implements ViewCommentHelper {
 	@Override
 	public void requestComment(RequestListener listener) {
 		CommentsAPI commentAPI = WeiboAPI.getInstance().getCommentsAPI();
-
 		commentAPI.toME(0L, 0L, 10, 1, CommentsAPI.AUTHOR_FILTER_ALL,
 				CommentsAPI.SRC_FILTER_ALL, listener);
 	}
@@ -71,5 +72,5 @@ public class ViewCommentFragment extends Fragment implements ViewCommentHelper {
 	public void beforeRequest() {
 		mProgressBar.setVisibility(View.VISIBLE);
 	}
-	
+
 }

@@ -1,14 +1,15 @@
 package com.minixalpha.webo;
 
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.minixalpha.control.ViewCommentHelper;
-import com.minixalpha.model.Cache;
-import com.minixalpha.model.LocalEvent;
-import com.minixalpha.model.WeiboItemAdapter;
-import com.minixalpha.model.Weibo;
-import com.minixalpha.util.Utils;
-import com.minixalpha.util.WeiboAPI;
-import com.minixalpha.view.CommentView;
+import com.minixalpha.webo.adapter.WeiboItemAdapter;
+import com.minixalpha.webo.control.ViewCommentHelper;
+import com.minixalpha.webo.data.Cache;
+import com.minixalpha.webo.data.LocalEvent;
+import com.minixalpha.webo.data.Weibo;
+import com.minixalpha.webo.utils.Utils;
+import com.minixalpha.webo.utils.WeiboAPI;
+import com.minixalpha.webo.view.CommentView;
+import com.minixalpha.webo.view.ProgressBarFactory;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.sina.weibo.sdk.openapi.CommentsAPI;
 import com.sina.weibo.sdk.openapi.models.Status;
@@ -49,20 +50,17 @@ public class WeiboDetailsActivity extends Activity implements ViewCommentHelper 
 		mCurWeibo = Status.parse(jsonStatus);
 
 		// 设置微博内容
-		View weibo = getLayoutInflater().inflate(R.layout.weibo_detail_header,
+		View weibo = getLayoutInflater().inflate(R.layout.item_weibo_no_footer,
 				null);
 		setUserInfo(weibo);
 		setWeiboContent(weibo);
 
 		// 初始化控件
-		mProgressBar = (ProgressBar) findViewById(R.id.comment_list_progress_bar);
-		
 		mCommentsListView = (PullToRefreshListView) findViewById(R.id.comment_list);
+		mProgressBar = ProgressBarFactory.getProgressBar(mCommentsListView);
 		mCommentsListView.getRefreshableView().addHeaderView(weibo);
 		CommentView.setListView(mCommentsListView,
-				R.layout.simple_comment_item, this);
-
-		
+				R.layout.item_comment_no_repost, this);
 	}
 
 	private void setUserInfo(View view) {

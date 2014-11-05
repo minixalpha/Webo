@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:decorate="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/weibo_footer"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:background="#FFFFFF"
+    android:baselineAligned="true"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/create_at"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:gravity="center"
+        android:text="@string/holder"
+        android:textColor="#BBBBBB" />
+
+    <LinearLayout
+        android:id="@+id/action_count"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center"
+        android:gravity="center" >
+
+        <com.minixalpha.webo.controls.DecorateTextView
+            android:id="@+id/repost_count"
+            style="@style/WeiboBtnText"
+            decorate:prefix="转发 ("
+            decorate:suffix=")" />
+
+        <com.minixalpha.webo.controls.DecorateTextView
+            android:id="@+id/comment_count"
+            style="@style/WeiboBtnText"
+            decorate:prefix="评论 ("
+            decorate:suffix=")" />
+
+        <com.minixalpha.webo.controls.DecorateTextView
+            android:id="@+id/favor_count"
+            style="@style/WeiboBtnText"
+            decorate:prefix="赞 ("
+            decorate:suffix=")" />
+    </LinearLayout>
+
+</RelativeLayout>

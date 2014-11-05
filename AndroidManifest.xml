@@ -20,19 +20,18 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:icon="@drawable/feather"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:theme="@style/WeboActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ViewPagerActivity"
+            android:name=".MainPageActivity"
             android:launchMode="singleTop"
             android:theme="@style/WeboActionBar" >
         </activity>
@@ -82,18 +81,9 @@
                 android:value=".ViewPagerActivity" />
         </activity>
         <activity
-            android:name=".ShowImageActivity"
-            android:label="@string/title_activity_show_image"
-            android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
-        <activity
             android:name=".ShowImagesViewPagerActivity"
             android:label="@string/title_activity_show_images_view_pager"
             android:theme="@android:style/Theme.NoTitleBar" >
-        </activity>
-        <activity
-            android:name=".TestDecorateTextViewActivity"
-            android:label="@string/title_activity_test_decorate_text_view" >
         </activity>
     </application>
 

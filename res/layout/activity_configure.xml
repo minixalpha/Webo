@@ -6,125 +6,68 @@
     tools:context="com.minixalpha.webo.ConfigureActivity" >
 
     <TextView
-        style="@style/confTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/ConfTitle"
         android:text="@string/basic_conf" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5pt"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/grey" />
+    <include layout="@layout/splitline_horizontal" />
 
     <Switch
         android:id="@+id/auto_refresh"
         style="@style/confItem"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:text="@string/auto_refresh" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5pt"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/grey" />
+    <include layout="@layout/splitline_horizontal" />
 
     <TextView
         android:id="@+id/font_size"
         style="@style/confItem"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:text="@string/font_size" />
 
     <TextView
-        style="@style/confTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/ConfTitle"
         android:text="@string/notification_conf" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5pt"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/grey" />
+    <include layout="@layout/splitline_horizontal" />
 
     <Switch
         android:id="@+id/weito_notify"
         style="@style/confItem"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:text="@string/weito_notify" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5pt"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/grey" />
+    <include layout="@layout/splitline_horizontal" />
 
     <Switch
         android:id="@+id/newmsg_notify"
         style="@style/confItem"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:text="@string/newmsg_notify" />
 
     <TextView
-        style="@style/confTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/ConfTitle"
         android:text="@string/image_conf" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5pt"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/grey" />
+    <include layout="@layout/splitline_horizontal" />
 
     <Switch
         android:id="@+id/display_image"
         style="@style/confItem"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:text="@string/display_image" />
 
     <TextView
-        style="@style/confTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/ConfTitle"
         android:text="@string/other_conf" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5pt"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/grey" />
+    <include layout="@layout/splitline_horizontal" />
 
     <TextView
         android:id="@+id/clear_cache"
         style="@style/confItem"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:text="@string/clear_cache" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5pt"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/grey" />
+    <include layout="@layout/splitline_horizontal" />
 
     <TextView
         android:id="@+id/about"
         style="@style/confItem"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
         android:text="@string/about" />
 
 </LinearLayout>

@@ -3,13 +3,13 @@ package com.minixalpha.webo;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.minixalpha.model.Cache;
-import com.minixalpha.model.SearchResult;
-import com.minixalpha.model.SearchResultAdapter;
-import com.minixalpha.model.WeiboItemAdapter;
-import com.minixalpha.model.Weibo;
-import com.minixalpha.util.Utils;
-import com.minixalpha.util.WeiboAPI;
+import com.minixalpha.webo.adapter.SearchResultAdapter;
+import com.minixalpha.webo.adapter.WeiboItemAdapter;
+import com.minixalpha.webo.data.Cache;
+import com.minixalpha.webo.data.SearchResult;
+import com.minixalpha.webo.data.Weibo;
+import com.minixalpha.webo.utils.Utils;
+import com.minixalpha.webo.utils.WeiboAPI;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.sina.weibo.sdk.openapi.legacy.SearchAPI;
@@ -29,6 +29,12 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 搜索模块
+ * 
+ * @author minixalpha
+ *
+ */
 public class SearchActivity extends Activity {
 	private static final int SEARCH_COUNT = 5;
 	protected static final String TAG = SearchActivity.class.getName();
@@ -38,7 +44,6 @@ public class SearchActivity extends Activity {
 
 	private TextView mScreenNameTitle;
 	private TextView mFollowersCountTitle;
-	
 	private ProgressBar mProgressBar;
 
 	@Override
@@ -50,13 +55,14 @@ public class SearchActivity extends Activity {
 		mSearchResultListView = (ListView) findViewById(R.id.search_result);
 		mSearchResult = new ArrayList<>();
 		mSearchResultAdapter = new SearchResultAdapter(SearchActivity.this,
-				R.layout.search_result_item, mSearchResult);
+				R.layout.item_search_result, mSearchResult);
 		mSearchResultListView.setAdapter(mSearchResultAdapter);
 
 		mScreenNameTitle = (TextView) findViewById(R.id.screen_name);
 		mFollowersCountTitle = (TextView) findViewById(R.id.followers_count);
 		
-		mProgressBar = (ProgressBar) findViewById(R.id.search_progress_bar);
+		//TODO: progress bar
+//		mProgressBar = (ProgressBar) findViewById(R.id.search_progress_bar);
 		handleIntent(getIntent());
 	}
 

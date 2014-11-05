@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/weibo_footer"
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:background="#E8E8E8"
+    android:baselineAligned="true"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/btn_repost"
+        style="@style/WeiboBtn"
+        android:background="@drawable/button_custom" >
+
+        <ImageView
+            android:id="@+id/repost_image"
+            style="@style/WeiboBtnImage"
+            android:contentDescription="@string/holder"
+            android:src="@drawable/retweet_32" />
+
+        <TextView
+            android:id="@+id/repost_count"
+            style="@style/WeiboBtnText" />
+    </LinearLayout>
+
+    <include layout="@layout/splitline_vertical" />
+
+    <LinearLayout
+        android:id="@+id/btn_comment"
+        style="@style/WeiboBtn"
+        android:background="@drawable/button_custom" >
+
+        <ImageView
+            android:id="@+id/comment_image"
+            style="@style/WeiboBtnImage"
+            android:contentDescription="@string/holder"
+            android:src="@drawable/comments_32" />
+
+        <TextView
+            android:id="@+id/comment_count"
+            style="@style/WeiboBtnText"
+            android:layout_marginBottom="1dp"
+             />
+    </LinearLayout>
+
+    <include layout="@layout/splitline_vertical" />
+
+    <LinearLayout
+        android:id="@+id/btn_favour"
+        style="@style/WeiboBtn"
+        android:background="@drawable/button_custom" >
+
+        <ImageView
+            android:id="@+id/like_image"
+            style="@style/WeiboBtnImage"
+            android:contentDescription="@string/holder"
+            android:src="@drawable/like_32" />
+
+        <TextView
+            android:id="@+id/favor_count"
+            style="@style/WeiboBtnText" />
+    </LinearLayout>
+
+</LinearLayout>

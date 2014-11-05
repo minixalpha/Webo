@@ -1,8 +1,8 @@
 package com.minixalpha.webo;
 
-import com.minixalpha.model.Cache;
-import com.minixalpha.util.Utils;
-import com.minixalpha.util.WeiboAPI;
+import com.minixalpha.webo.data.Cache;
+import com.minixalpha.webo.utils.Utils;
+import com.minixalpha.webo.utils.WeiboAPI;
 import com.sina.weibo.sdk.exception.WeiboException;
 import com.sina.weibo.sdk.net.RequestListener;
 
@@ -17,6 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+/**
+ * 设置模块
+ * 
+ * @author minixalpha
+ * 
+ */
 public class ConfigureActivity extends Activity {
 
 	@Override

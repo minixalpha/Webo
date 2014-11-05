@@ -1,9 +1,9 @@
 package com.minixalpha.webo;
 
-import com.minixalpha.control.UpdateWeiboCallback;
-import com.minixalpha.model.LocalEvent;
-import com.minixalpha.util.Utils;
-import com.minixalpha.util.WeiboAPI;
+import com.minixalpha.webo.control.UpdateWeiboCallback;
+import com.minixalpha.webo.data.LocalEvent;
+import com.minixalpha.webo.utils.Utils;
+import com.minixalpha.webo.utils.WeiboAPI;
 import com.sina.weibo.sdk.openapi.StatusesAPI;
 
 import android.app.NotificationManager;
@@ -27,6 +27,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 发送微博
+ * 
+ * @author minixalpha
+ * 
+ */
 public class CreateWeiboFragment extends Fragment {
 	private static final String TAG = CreateWeiboFragment.class.getName();
 	private static int mWordsLimit;
@@ -69,7 +75,7 @@ public class CreateWeiboFragment extends Fragment {
 	private class ClickSend implements OnClickListener {
 		@Override
 		public void onClick(View v) {
-			
+
 			if (mLeftWordsCount == mWordsLimit) {
 				// 字数太少
 				String hint = getResources().getString(R.string.words_null);

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="horizontal"
+    android:paddingTop="5dp" >
+
+    <ImageView
+        android:id="@+id/avatar"
+        style="@style/EqualWeightElement"
+        android:layout_height="60dp"
+        android:contentDescription="@string/avatar"
+        android:src="@drawable/avatar_48" />
+
+    <TextView
+        android:id="@+id/screen_name"
+        style="@style/EqualWeightElement"
+        android:text="@string/holder" />
+
+    <TextView
+        android:id="@+id/followers_count"
+        style="@style/EqualWeightElement"
+        android:text="@string/holder" />
+
+</LinearLayout>

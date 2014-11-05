@@ -11,7 +11,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp" >
+        android:paddingRight="10dp" 
+        >
     </FrameLayout>
 
     <LinearLayout
@@ -23,27 +24,16 @@
 
         <ImageButton
             android:id="@+id/newmsg_btn_comment"
-            style="?android:attr/buttonBarStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="1dp"
-            android:layout_marginRight="1dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_custom"
+            style="@style/EqualWeightBtn"
             android:contentDescription="@string/post"
-            android:paddingLeft="20dp"
             android:src="@drawable/comments_red_32" />
+
+        <include layout="@layout/splitline_vertical" />
 
         <ImageButton
             android:id="@+id/newmsg_btn_at"
-            style="?android:attr/buttonBarStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/button_custom"
+            style="@style/EqualWeightBtn"
             android:contentDescription="@string/clear"
-            android:paddingLeft="20dp"
-            android:paddingRight="5dp"
             android:src="@drawable/at_thin_50" />
     </LinearLayout>
 

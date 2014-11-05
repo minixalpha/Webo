@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/weibo_content"
+  	style="@style/WeiboBody"
+    >
+
+    <TextView
+        android:id="@+id/main_content"
+        style="@style/WeiboText"
+        android:text="@string/holder" />
+
+    <GridView
+        android:id="@+id/main_content_images"
+        style="@style/WeiboImages" />
+
+    <TextView
+        android:id="@+id/repost_content"
+        style="@style/WeiboText.GREY"
+        android:text="@string/holder" />
+
+    <GridView
+        android:id="@+id/repost_content_images"
+        style="@style/WeiboImages.GREY" />
+
+</LinearLayout>

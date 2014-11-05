@@ -1,49 +1,58 @@
 package com.minixalpha.webo;
 
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.minixalpha.control.ViewWeiboHelper;
-import com.minixalpha.control.WeiboController;
-import com.minixalpha.model.Cache;
-import com.minixalpha.model.WeiboItemAdapter;
-import com.minixalpha.util.WeiboAPI;
+import com.minixalpha.webo.adapter.WeiboItemAdapter;
+import com.minixalpha.webo.control.ViewWeiboHelper;
+import com.minixalpha.webo.control.WeiboController;
+import com.minixalpha.webo.data.Cache;
+import com.minixalpha.webo.utils.Utils;
+import com.minixalpha.webo.utils.WeiboAPI;
+import com.minixalpha.webo.view.ProgressBarFactory;
 import com.sina.weibo.sdk.net.RequestListener;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.MarginLayoutParams;
+import android.view.ViewParent;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.view.WindowManager;
+import android.widget.AbsListView.LayoutParams;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
+/**
+ * 查看时间线上的微博
+ * 
+ * @author minixalpha
+ * 
+ */
 public class ViewWeiboFragment extends Fragment implements ViewWeiboHelper {
 	private static final String TAG = ViewWeiboFragment.class.getName();
 
-	/* 时间线　UI */
 	private PullToRefreshListView mTimeLineView;
-
-	/* 时间线控制器 */
 	private WeiboController mTimeLineControllor;
-
 	private ProgressBar mProgressBar;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		Log.d(Constants.APP_DEBUG_FLAG, "ViewWeiboFragment onCreateView");
 
 		View view = initFragement(inflater, container);
 
 		mTimeLineControllor = new WeiboController(this);
-
 		mTimeLineView = (PullToRefreshListView) view
 				.findViewById(R.id.timeline);
-
-		mProgressBar = (ProgressBar) view
-				.findViewById(R.id.timeline_progressbar);
+		mProgressBar = ProgressBarFactory.getProgressBar(mTimeLineView);
 
 		WeiboItemAdapter statusAdapter = mTimeLineControllor.getAdapter();
 		Log.d(TAG, statusAdapter.toString());
@@ -51,8 +60,6 @@ public class ViewWeiboFragment extends Fragment implements ViewWeiboHelper {
 
 		mTimeLineView.setOnRefreshListener(mTimeLineControllor
 				.getOnRefreshListener());
-
-		/* 初始化　微博列表 */
 		mTimeLineControllor.initTimeLine();
 
 		return view;
@@ -112,5 +119,10 @@ public class ViewWeiboFragment extends Fragment implements ViewWeiboHelper {
 	@Override
 	public void actionAfterUpdate() {
 		mProgressBar.setVisibility(ProgressBar.GONE);
+	}
+
+	@Override
+	public void actionBeforeLoad() {
+		mProgressBar.setVisibility(View.VISIBLE);
 	}
 }

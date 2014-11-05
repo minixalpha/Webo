@@ -1,9 +1,9 @@
 package com.minixalpha.webo;
 
-import com.minixalpha.control.UpdateWeiboCallback;
-import com.minixalpha.model.LocalEvent;
-import com.minixalpha.util.Utils;
-import com.minixalpha.util.WeiboAPI;
+import com.minixalpha.webo.control.UpdateWeiboCallback;
+import com.minixalpha.webo.data.LocalEvent;
+import com.minixalpha.webo.utils.Utils;
+import com.minixalpha.webo.utils.WeiboAPI;
 import com.sina.weibo.sdk.openapi.CommentsAPI;
 import com.sina.weibo.sdk.openapi.StatusesAPI;
 import com.sina.weibo.sdk.openapi.models.Status;
@@ -28,6 +28,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 转发及评论模块
+ * 
+ * @author minixalpha
+ *
+ */
 public class RetweetReplyActivity extends Activity {
 	private static final String TAG = RetweetReplyActivity.class.getName();
 	private static int mWordsLimit;

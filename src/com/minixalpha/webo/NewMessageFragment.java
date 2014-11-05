@@ -11,6 +11,12 @@ import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
+/**
+ * 新消息模块，显示对当前登录用户的评论及AT信息
+ * 
+ * @author minixalpha
+ * 
+ */
 public class NewMessageFragment extends Fragment {
 	private static final String TAG = NewMessageFragment.class.getName();
 	private View mView;

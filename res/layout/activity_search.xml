@@ -22,29 +22,16 @@
 
         <TextView
             android:id="@+id/screen_name"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
+            style="@style/HorizontalEqualWeight"
             android:text="@string/screen_name"
             android:visibility="gone" />
 
         <TextView
             android:id="@+id/followers_count"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
+            style="@style/HorizontalEqualWeight"
             android:text="@string/followers_count"
             android:visibility="gone" />
     </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/search_progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone" />
 
     <ListView
         android:id="@+id/search_result"

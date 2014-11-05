@@ -73,6 +73,6 @@
     <string name="display_image">显示图片</string>
     <string name="clear_cache">清除缓存</string>
     <string name="about">关于</string>
-    <string name="comment_on_my_weibo">评论我的微博</string>
+    <string name="comment_on_my_weibo">评论我的微博: </string>
 
 </resources>

@@ -1,13 +1,13 @@
 package com.minixalpha.webo;
 
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.minixalpha.control.ViewWeiboHelper;
-import com.minixalpha.control.WeiboController;
-import com.minixalpha.model.Cache;
-import com.minixalpha.model.WeiboItemAdapter;
-import com.minixalpha.util.WeiboAPI;
-import com.minixalpha.view.UserInfoView;
-import com.sina.weibo.sdk.exception.WeiboException;
+import com.minixalpha.webo.adapter.WeiboItemAdapter;
+import com.minixalpha.webo.control.ViewWeiboHelper;
+import com.minixalpha.webo.control.WeiboController;
+import com.minixalpha.webo.data.Cache;
+import com.minixalpha.webo.utils.WeiboAPI;
+import com.minixalpha.webo.view.ProgressBarFactory;
+import com.minixalpha.webo.view.UserInfoView;
 import com.sina.weibo.sdk.net.RequestListener;
 import com.sina.weibo.sdk.openapi.StatusesAPI;
 
@@ -17,15 +17,15 @@ import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 public class HomePageActivity extends Activity implements ViewWeiboHelper {
 	private static final String TAG = HomePageActivity.class.getName();
-
-	/* 时间线　UI */
 	private PullToRefreshListView mTimeLineView;
-
-	/* 时间线控制器 */
 	private WeiboController mTimeLineControllor;
+	private ProgressBar mProgressBar;
+	private View mHomeHeader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,18 +33,21 @@ public class HomePageActivity extends Activity implements ViewWeiboHelper {
 		setContentView(R.layout.activity_home_page);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
-		UserInfoView.initUserInfo(this.getWindow().getDecorView());
+		mHomeHeader = getLayoutInflater().inflate(
+				R.layout.user_info_light_layout, null);
+		UserInfoView.initUserInfo(mHomeHeader);
 		initUserTimeline();
 	}
 
 	private void initUserTimeline() {
 		mTimeLineControllor = new WeiboController(this,
-				R.layout.home_weibo_item);
+				R.layout.item_weibo_no_header);
 
 		mTimeLineView = (PullToRefreshListView) findViewById(R.id.timeline);
+		mTimeLineView.getRefreshableView().addHeaderView(mHomeHeader);
 
+		mProgressBar = ProgressBarFactory.getProgressBar(mTimeLineView);
 		WeiboItemAdapter statusAdapter = mTimeLineControllor.getAdapter();
-		Log.d(TAG, statusAdapter.toString());
 		mTimeLineView.setAdapter(statusAdapter);
 
 		mTimeLineView.setOnRefreshListener(mTimeLineControllor
@@ -119,7 +122,11 @@ public class HomePageActivity extends Activity implements ViewWeiboHelper {
 
 	@Override
 	public void actionAfterUpdate() {
-		// TODO Auto-generated method stub
+		mProgressBar.setVisibility(ProgressBar.GONE);
+	}
 
+	@Override
+	public void actionBeforeLoad() {
+		mProgressBar.setVisibility(View.VISIBLE);
 	}
 }

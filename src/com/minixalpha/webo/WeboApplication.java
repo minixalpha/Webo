@@ -1,6 +1,6 @@
 package com.minixalpha.webo;
 
-import com.minixalpha.control.Configure;
+import com.minixalpha.webo.data.Configure;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.Application;

@@ -3,78 +3,51 @@
     android:id="@+id/user_info_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#FFFFFF"
     android:orientation="vertical" >
 
     <TextView
         android:id="@+id/screen_name"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:drawableLeft="@drawable/avatar_48"
-        android:gravity="center"
-        android:paddingLeft="50dp"
+        style="@style/UserInfoTitle"
         android:text="@string/holder" />
 
     <LinearLayout
         android:id="@+id/uesr_info_count_text"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp" >
+        style="@style/UserInfoTextRow" >
 
         <TextView
             android:id="@+id/followers_text"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
+            style="@style/UserInfoText"
             android:text="@string/followers_count" />
 
         <TextView
             android:id="@+id/starred_text"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
+            style="@style/UserInfoText"
             android:text="@string/starred_count" />
 
         <TextView
             android:id="@+id/weibo_count_text"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
+            style="@style/UserInfoText"
             android:text="@string/weibo_count" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/uesr_info_count"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp" >
+        style="@style/UserInfoTextRow" >
 
         <TextView
             android:id="@+id/followers_count"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
+            style="@style/UserInfoText"
             android:text="@string/zero" />
 
         <TextView
             android:id="@+id/starred_count"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
+            style="@style/UserInfoText"
             android:text="@string/zero" />
 
         <TextView
             android:id="@+id/weibo_count"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
+            style="@style/UserInfoText"
             android:text="@string/zero" />
     </LinearLayout>
 

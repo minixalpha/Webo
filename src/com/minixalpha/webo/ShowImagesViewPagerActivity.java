@@ -2,9 +2,9 @@ package com.minixalpha.webo;
 
 import java.util.List;
 
-import com.minixalpha.control.Configure;
-import com.minixalpha.model.LocalEvent;
-import com.minixalpha.util.Utils;
+import com.minixalpha.webo.data.Configure;
+import com.minixalpha.webo.data.LocalEvent;
+import com.minixalpha.webo.utils.Utils;
 
 import uk.co.senab.photoview.PhotoView;
 import android.app.Activity;
@@ -18,6 +18,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * 全屏显示图片模块，支持左右滑动多图切换
+ * 
+ * @author minixalpha
+ * 
+ */
 public class ShowImagesViewPagerActivity extends Activity {
 	ViewPager mImagesViewPager;
 	List<String> mImgesURLList;

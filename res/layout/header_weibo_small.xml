@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/weibo_header"
+    style="@style/WeiboHeader.SMALL" >
+
+    <ImageView
+        android:id="@+id/avatar"
+        style="@style/Avatar.MID"
+        android:contentDescription="@string/avatar"
+        android:src="@drawable/avatar" />
+
+    <TextView
+        android:id="@+id/screen_name"
+        style="@style/ScreenName" />
+
+    <TextView
+        android:id="@+id/source"
+        style="@style/WeiboSource" />
+
+    <TextView
+        android:id="@+id/create_at"
+        style="@style/WeiboCreateAt" />
+
+</RelativeLayout>
