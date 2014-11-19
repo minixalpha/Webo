@@ -5,6 +5,6 @@
     android:orientation="vertical" >
 
     <include layout="@layout/header_weibo" />
-    <include layout="@layout/body_weibo" />
+    <include layout="@layout/body_weibo_no_repost" />
 
 </LinearLayout>

@@ -1,9 +1,9 @@
 package com.minixalpha.webo.view;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
 import com.minixalpha.webo.R;
 import com.minixalpha.webo.data.Cache;
 import com.minixalpha.webo.utils.Utils;
@@ -15,7 +15,6 @@ import com.sina.weibo.sdk.openapi.models.User;
 import com.sina.weibo.sdk.utils.LogUtil;
 
 public class UserInfoView {
-
 	private static final String TAG = UserInfoView.class.getName();
 
 	private static void initUserInfo(View menuView, User user) {
@@ -40,9 +39,11 @@ public class UserInfoView {
 		String cachedUser = Cache.getUserInfo(uid);
 		boolean hasCache = !TextUtils.isEmpty(cachedUser);
 		if (hasCache) {
+			Log.d(TAG, "has cache");
 			User user = User.parse(cachedUser);
 			initUserInfo(menuView, user);
 		} else {
+			Log.d(TAG, "no cache");
 			if (Utils.isNetworkAvailable()) {
 				UsersAPI userAPI = weiboAPI.getUserAPI();
 				userAPI.show(uid, new RequestListener() {

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.minixalpha.webo"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="@string/version_name" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -27,6 +27,7 @@
             android:theme="@style/WeboActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -41,7 +42,7 @@
             android:theme="@style/WeboActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ViewPagerActivity" />
+                android:value=".MainPageActivity" />
         </activity>
         <activity
             android:name=".SearchActivity"
@@ -64,26 +65,37 @@
             android:windowSoftInputMode="adjustResize" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ViewPagerActivity" />
+                android:value=".MainPageActivity" />
         </activity>
         <activity
             android:name=".WeiboDetailsActivity"
             android:label="@string/title_activity_weibo_details" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ViewPagerActivity" />
+                android:value=".MainPageActivity" />
         </activity>
         <activity
-            android:name=".ConfigureActivity"
+            android:name=".SettingActivity"
             android:label="@string/title_activity_configure" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ViewPagerActivity" />
+                android:value=".MainPageActivity" />
         </activity>
         <activity
             android:name=".ShowImagesViewPagerActivity"
             android:label="@string/title_activity_show_images_view_pager"
             android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".PreferenceSettingsActivity"
+            android:label="@string/title_activity_preference_settings" >
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SettingActivity" />
         </activity>
     </application>
 

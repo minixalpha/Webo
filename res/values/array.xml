@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="image_level">
+        <item>@string/mid_image</item>
+        <item>@string/small_image</item>
+        <item>@string/no_image</item>
+    </string-array>
+    <string-array name="font_level">
+        <item>@string/small_font</item>
+        <item>@string/mid_font</item>
+        <item>@string/large_font</item>
+    </string-array>
+
+</resources>

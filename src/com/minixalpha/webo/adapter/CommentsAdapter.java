@@ -47,15 +47,15 @@ public class CommentsAdapter extends ArrayAdapter<Comment> {
 		Comment comment = getItem(position);
 		WeiboItemAdapter.setAvatar(mViewHolder.mAvatar,
 				comment.user.avatar_large);
-		WeiboItemAdapter.setTextViewLink(mViewHolder.mScreenName,
+		WeiboItemAdapter.setTextWithLink(mViewHolder.mScreenName,
 				comment.user.screen_name);
-		WeiboItemAdapter.setTextViewLink(mViewHolder.mCreateAt,
+		WeiboItemAdapter.setTextWithLink(mViewHolder.mCreateAt,
 				Utils.getFormatTime(comment.created_at));
-		WeiboItemAdapter.setTextViewContent(mViewHolder.mMainContent,
+		WeiboItemAdapter.setTextWithAtAndLink(mViewHolder.mMainContent,
 				comment.text);
 
 		if (TextUtils.isEmpty(comment.status.text) == false) {
-			WeiboItemAdapter.setTextViewContent(mViewHolder.mRepostContent,
+			WeiboItemAdapter.setTextWithAtAndLink(mViewHolder.mRepostContent,
 					Utils.loadFromResource(R.string.comment_on_my_weibo)
 							+ comment.status.text);
 		}

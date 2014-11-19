@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/basic_conf" >
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/auto_refresh"
+            android:title="@string/auto_refresh" />
+
+        <ListPreference
+            android:defaultValue="@string/mid_font"
+            android:entries="@array/font_level"
+            android:entryValues="@array/font_level"
+            android:key="@string/font_size"
+            android:summary="@string/mid_font"
+            android:title="@string/font_size" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/notification_conf" >
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/new_weito_notify"
+            android:title="@string/new_weito_notify" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/new_msg_notify"
+            android:title="@string/new_msg_notify" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/image_conf" >
+        <ListPreference
+            android:defaultValue="@string/mid_image"
+            android:entries="@array/image_level"
+            android:entryValues="@array/image_level"
+            android:key="@string/image_size"
+            android:summary="@string/mid_image"
+            android:title="@string/image_size" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/other_conf" >
+        <Preference
+            android:key="@string/clear_cache"
+            android:title="@string/clear_cache" />
+        <Preference
+            android:key="@string/about"
+            android:title="@string/about" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

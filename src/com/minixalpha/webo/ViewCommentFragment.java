@@ -54,6 +54,14 @@ public class ViewCommentFragment extends Fragment implements ViewCommentHelper {
 	}
 
 	@Override
+	public void requestComment(long since_id, long max_id,
+			RequestListener listener) {
+		CommentsAPI commentAPI = WeiboAPI.getInstance().getCommentsAPI();
+		commentAPI.toME(since_id, max_id, 10, 1, CommentsAPI.AUTHOR_FILTER_ALL,
+				CommentsAPI.SRC_FILTER_ALL, listener);
+	}
+
+	@Override
 	public String getCache() {
 		return Cache.getComments();
 	}

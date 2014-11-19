@@ -148,7 +148,7 @@ public class MainPageActivity extends FragmentActivity {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(MainPageActivity.this,
-						ConfigureActivity.class);
+						SettingActivity.class);
 				startActivity(intent);
 
 			}

@@ -406,7 +406,6 @@ public class Utils {
 	 */
 	public static String getHrefLink(String text) {
 		return getReplacedStr(URL_REGEX, text, new OperationOnStr() {
-
 			@Override
 			public String action(String str) {
 				return "<a href=\"" + str + "\">" + str + "</a>";
@@ -456,9 +455,20 @@ public class Utils {
 		display.getSize(size);
 		return size.x;
 	}
-	
 
 	public static String getMiddlePicURL(String thumbnailPicURL) {
 		return thumbnailPicURL.replace("thumbnail", "bmiddle");
+	}
+
+	/**
+	 * 将 px 转换为 sp
+	 * 
+	 * @param context
+	 * @param px
+	 * @return
+	 */
+	public static float pixelsToSp(float px) {
+		float scaledDensity = mContext.getResources().getDisplayMetrics().scaledDensity;
+		return px / scaledDensity;
 	}
 }

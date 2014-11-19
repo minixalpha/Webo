@@ -1,14 +1,17 @@
 package com.minixalpha.webo.data;
 
+import android.graphics.Bitmap;
+
 import com.minixalpha.webo.R;
 import com.minixalpha.webo.WeboApplication;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.process.BitmapProcessor;
 
 /**
- * 各种配置信息
+ * 代码中的配置信息
  * 
  * @author minixalpha
  * 
@@ -72,8 +75,9 @@ public class Configure {
 	 * 微博配图配置
 	 */
 	private static final DisplayImageOptions mWeiboImageDisplayImageOptions = new DisplayImageOptions.Builder()
-			.showImageOnFail(R.drawable.weibo_image_holder).cacheOnDisk(true)
-			.build();
+			.showImageOnFail(R.drawable.weibo_image_holder)
+			.showImageOnLoading(R.drawable.weibo_image_holder)
+			.cacheOnDisk(true).build();
 
 	/**
 	 * 图片全屏显示时的配置
@@ -93,6 +97,14 @@ public class Configure {
 		return mWeiboImageDisplayImageOptions;
 	}
 
+	public static DisplayImageOptions getWeiboImageDisplayImageOptions(
+			BitmapProcessor postProcessor) {
+		return new DisplayImageOptions.Builder()
+				.showImageOnFail(R.drawable.weibo_image_holder)
+				.showImageOnLoading(R.drawable.weibo_image_holder)
+				.cacheOnDisk(true).postProcessor(postProcessor).build();
+	}
+
 	public static DisplayImageOptions getFullScreenImageDisplayImageOptions() {
 		return mFullScreenImageDisplayImageOptions;
 	}
@@ -108,7 +120,7 @@ public class Configure {
 	public static String getScope() {
 		return SCOPE;
 	}
-	
+
 	public static String getAppDebugFlag() {
 		return APP_DEBUG_FLAG;
 	}

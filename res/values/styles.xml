@@ -65,15 +65,20 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="confItem">
-        <item name="android:paddingLeft">15dp</item>
-        <item name="android:paddingRight">10dp</item>
-        <item name="android:paddingTop">10dp</item>
-        <item name="android:paddingBottom">10dp</item>
+    <style name="ConfItem">
+        <item name="android:padding">16dp</item>
         <item name="android:gravity">center|left</item>
         <item name="android:textSize">18sp</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="AboutItem">
+        <item name="android:padding">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="WeiboBtnImage">
@@ -89,14 +94,7 @@
         <item name="android:layout_marginRight">5dp</item>
     </style>
 
-    <style name="ConfTitle">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:paddingLeft">10dp</item>
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
+    <style name="ConfTitle"></style>
 
     <style name="WhiteBold">
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
@@ -213,6 +211,8 @@
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingLeft">5dp</item>
         <item name="android:paddingRight">5dp</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
     </style>
 
     <style name="WeiboText.GREY">
@@ -221,13 +221,14 @@
 
     <style name="WeiboImages">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">5dp</item>
         <item name="android:paddingRight">5dp</item>
         <item name="android:numColumns">3</item>
         <item name="android:stretchMode">columnWidth</item>
         <item name="android:verticalSpacing">5dp</item>
-        <item name="android:visibility">gone</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
     </style>
 
     <style name="WeiboImages.GREY">
@@ -239,8 +240,9 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:clickable">true</item>
         <item name="android:gravity">center</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
     </style>
 
     <style name="WeiboBody">
@@ -268,6 +270,7 @@
     <style name="Avatar.SMALL">
         <item name="android:layout_width">30dp</item>
         <item name="android:layout_height">30dp</item>
+        <item name="android:focusable">false</item>
     </style>
 
     <style name="ScreenName">

@@ -24,8 +24,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 /**
  * 微博详情界面，包含微博内容和所有评论
@@ -37,6 +39,7 @@ public class WeiboDetailsActivity extends Activity implements ViewCommentHelper 
 	private Status mCurWeibo;
 	private PullToRefreshListView mCommentsListView;
 	private ProgressBar mProgressBar;
+	private ViewHolder mViewHolder;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class WeiboDetailsActivity extends Activity implements ViewCommentHelper 
 		// 设置微博内容
 		View weibo = getLayoutInflater().inflate(R.layout.item_weibo_no_footer,
 				null);
+		mViewHolder = new ViewHolder(weibo);
 		setUserInfo(weibo);
 		setWeiboContent(weibo);
 
@@ -65,25 +69,33 @@ public class WeiboDetailsActivity extends Activity implements ViewCommentHelper 
 
 	private void setUserInfo(View view) {
 		User user = mCurWeibo.user;
-		WeiboItemAdapter.setAvatar(view, R.id.avatar, user.avatar_large);
-		WeiboItemAdapter.setTextViewLink(view, R.id.screen_name,
+
+		WeiboItemAdapter.setAvatar(mViewHolder.mAvatar, user.avatar_large);
+		WeiboItemAdapter.setTextWithLink(mViewHolder.mScreenName,
 				user.screen_name);
-		WeiboItemAdapter.setTextViewLink(view, R.id.create_at,
+		WeiboItemAdapter.setTextWithLink(mViewHolder.mCreateAt,
 				Utils.getFormatTime(mCurWeibo.created_at));
 	}
 
-	private void setWeiboContent(View view) {
-		WeiboItemAdapter.setTextViewContent(view, R.id.main_content,
-				mCurWeibo.text);
+	private class ViewHolder {
+		ImageView mAvatar;
+		TextView mScreenName;
+		TextView mCreateAt;
 
-		String retweetText = Weibo
-				.getRetweetContent(mCurWeibo.retweeted_status);
-		if (TextUtils.isEmpty(retweetText) == false) {
-			User user = mCurWeibo.retweeted_status.user;
-			Cache.updateUserId(user.screen_name, user.id);
+		TextView mMainContent;
+
+		public ViewHolder(View view) {
+			mAvatar = (ImageView) view.findViewById(R.id.avatar);
+			mScreenName = (TextView) view.findViewById(R.id.screen_name);
+			mCreateAt = (TextView) view.findViewById(R.id.create_at);
+
+			mMainContent = (TextView) view.findViewById(R.id.main_content);
 		}
-		WeiboItemAdapter.setTextViewContent(view, R.id.repost_content,
-				retweetText);
+	}
+
+	private void setWeiboContent(View view) {
+		WeiboItemAdapter.setTextWithAtAndLink(mViewHolder.mMainContent,
+				mCurWeibo.text);
 	}
 
 	@Override
@@ -115,6 +127,14 @@ public class WeiboDetailsActivity extends Activity implements ViewCommentHelper 
 	}
 
 	@Override
+	public void requestComment(long since_id, long max_id,
+			RequestListener listener) {
+		CommentsAPI commentAPI = WeiboAPI.getInstance().getCommentsAPI();
+		commentAPI.show(Long.parseLong(mCurWeibo.id), since_id, max_id, 10, 1,
+				CommentsAPI.AUTHOR_FILTER_ALL, listener);
+	}
+
+	@Override
 	public Activity getActivity() {
 		return this;
 	}
@@ -122,13 +142,11 @@ public class WeiboDetailsActivity extends Activity implements ViewCommentHelper 
 	/* 微博详情一般不会多次点开，不使用缓存 */
 	@Override
 	public String getCache() {
-		// NO NOTHING
 		return null;
 	}
 
 	@Override
 	public void updateCache(String response) {
-		// NO NOTHING
 	}
 
 	@Override

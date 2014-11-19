@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/weibo_content"
-  	style="@style/WeiboBody"
-    >
+    style="@style/WeiboBody" >
 
-    <TextView
-        android:id="@+id/main_content"
-        style="@style/WeiboText"
-        android:text="@string/holder" />
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
-    <GridView
-        android:id="@+id/main_content_images"
-        style="@style/WeiboImages" />
+        <TextView
+            android:id="@+id/main_content"
+            style="@style/WeiboText"
+            android:text="@string/holder" />
 
-    <TextView
-        android:id="@+id/repost_content"
-        style="@style/WeiboText.GREY"
-        android:text="@string/holder" />
+        <GridView
+            android:id="@+id/main_content_images"
+            style="@style/WeiboImages" />
+    </LinearLayout>
 
-    <GridView
-        android:id="@+id/repost_content_images"
-        style="@style/WeiboImages.GREY" />
+    <LinearLayout
+        android:id="@+id/repost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#EEEEEE"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/repost_content"
+            style="@style/WeiboText.GREY"
+            android:text="@string/holder" />
+
+        <GridView
+            android:id="@+id/repost_content_images"
+            style="@style/WeiboImages.GREY" />
+    </LinearLayout>
 
 </LinearLayout>

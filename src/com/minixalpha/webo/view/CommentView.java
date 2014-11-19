@@ -64,26 +64,24 @@ public class CommentView {
 		boolean hasCache = !TextUtils.isEmpty(response);
 
 		if (hasCache) {
-			displayComments(response);
-			Log.d(TAG, "has cache:" + response);
+			displayComments(response, true);
 		} else {
 			requestCommentList();
-			Log.d(TAG, "no cache");
 		}
 	}
 
-	private void displayComments(String jsonContent) {
+	private void displayComments(String jsonContent, boolean isnew) {
 		if (!TextUtils.isEmpty(jsonContent)) {
 			CommentList comments = CommentList.parse(jsonContent);
-			if (comments != null && comments.total_number > 0) {
+			if (comments != null) {
 				List<Comment> commentsList = comments.commentList;
-				ListIterator<Comment> iter = commentsList
-						.listIterator(commentsList.size());
-				mCommentsList.clear();
-				while (iter.hasPrevious()) {
-					mCommentsList.addFirst(iter.previous());
+				if (commentsList != null) {
+					if (isnew) {
+						mCommentsList.clear();
+					}
+					mCommentsList.addAll(commentsList);
+					mCommentsAdapter.notifyDataSetChanged();
 				}
-				mCommentsAdapter.notifyDataSetChanged();
 				mViewCommentHelper.onRequestComplete();
 			}
 		}
@@ -97,23 +95,46 @@ public class CommentView {
 		if (Utils.isNetworkAvailable()) {
 			if (WeiboAPI.getInstance().isTokenAvailable()) {
 				needRefresh = false;
+				if (PullToRefreshBase.Mode.PULL_FROM_START == mCommentsListView
+						.getCurrentMode() || mCommentsList.isEmpty()) {
+					// 下拉
+					mViewCommentHelper.requestComment(new RequestListener() {
 
-				mViewCommentHelper.requestComment(new RequestListener() {
+						@Override
+						public void onComplete(String response) {
+							Log.d(TAG, "response:" + response);
+							mViewCommentHelper.onRequestComplete();
+							displayComments(response, true);
+							mViewCommentHelper.updateCache(response);
+							mCommentsListView.onRefreshComplete();
+						}
 
-					@Override
-					public void onComplete(String response) {
-						Log.d(TAG, "response:" + response);
-						mViewCommentHelper.onRequestComplete();
-						displayComments(response);
-						mViewCommentHelper.updateCache(response);
-						mCommentsListView.onRefreshComplete();
-					}
+						@Override
+						public void onWeiboException(WeiboException arg0) {
+						}
 
-					@Override
-					public void onWeiboException(WeiboException arg0) {
-					}
+					});
+				} else {
+					// 上拉
+					long lastId = Long.parseLong(mCommentsList.getLast().id) - 1;
+					mViewCommentHelper.requestComment(0, lastId,
+							new RequestListener() {
 
-				});
+								@Override
+								public void onComplete(String response) {
+									Log.d(TAG, "response:" + response);
+									mViewCommentHelper.onRequestComplete();
+									displayComments(response, false);
+									mViewCommentHelper.updateCache(response);
+									mCommentsListView.onRefreshComplete();
+								}
+
+								@Override
+								public void onWeiboException(WeiboException arg0) {
+								}
+
+							});
+				}
 
 			} else {
 				Log.d(TAG, "Token is not valid");

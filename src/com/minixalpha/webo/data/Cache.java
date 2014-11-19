@@ -172,21 +172,29 @@ public class Cache {
 	 * 清除所有缓存：时间线内容，图片
 	 */
 	public static void clearAll() {
-
 		clearTimeLine();
 		clearImage();
+		clearUserInfo();
 	}
 
 	private static void clearTimeLine() {
-		SharedPreferences pref = mContext.getSharedPreferences(TIMELINE_FILE,
-				Context.MODE_APPEND);
-		Editor editor = pref.edit();
-		editor.clear();
-		editor.commit();
+		clearSharedPreferenceFile(TIMELINE_FILE);
 	}
 
 	private static void clearImage() {
 		WeboApplication.getImageLoader().clearDiskCache();
+	}
+
+	private static void clearUserInfo() {
+		clearSharedPreferenceFile(USER_INFO_FILE);
+	}
+
+	private static void clearSharedPreferenceFile(String file) {
+		SharedPreferences pref = mContext.getSharedPreferences(file,
+				Context.MODE_APPEND);
+		Editor editor = pref.edit();
+		editor.clear();
+		editor.commit();
 	}
 
 	public static void updateUserId(String screen_name, String uid) {

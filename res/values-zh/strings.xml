@@ -65,14 +65,23 @@
     <string name="basic_conf">基本设置</string>
     <string name="notification_conf">通知设置</string>
     <string name="image_conf">图片设置</string>
+    <string name="image_size">图片大小</string>
     <string name="other_conf">其它</string>
     <string name="auto_refresh">自动刷新</string>
     <string name="font_size">字体大小</string>
-    <string name="weito_notify">新微博提醒</string>
-    <string name="newmsg_notify">新消息提醒</string>
+    <string name="new_weito_notify">新微博提醒</string>
+    <string name="new_msg_notify">新消息提醒</string>
     <string name="display_image">显示图片</string>
     <string name="clear_cache">清除缓存</string>
     <string name="about">关于</string>
     <string name="comment_on_my_weibo">评论我的微博: </string>
+    <string name="no_image">无图</string>
+    <string name="small_image">小图</string>
+    <string name="mid_image">中图</string>
+    <string name="large_image">大图</string>
+    <string name="small_font">较小</string>
+    <string name="mid_font">普通</string>
+    <string name="large_font">较大</string>
+    <string name="title_activity_about">关于</string>
 
 </resources>

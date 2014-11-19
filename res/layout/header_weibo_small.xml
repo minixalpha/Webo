@@ -5,7 +5,7 @@
 
     <ImageView
         android:id="@+id/avatar"
-        style="@style/Avatar.MID"
+        style="@style/Avatar.SMALL"
         android:contentDescription="@string/avatar"
         android:src="@drawable/avatar" />
 

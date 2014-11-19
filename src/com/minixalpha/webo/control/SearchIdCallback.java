@@ -47,7 +47,7 @@ public class SearchIdCallback implements RequestListener {
 			mCompleteN++;
 			
 			if (mCompleteN == mTotalN) {
-				WeiboItemAdapter.setTextViewLink(mTextview, mCurtext);
+				WeiboItemAdapter.setTextWithLink(mTextview, mCurtext);
 			}
 		}
 	}

@@ -43,6 +43,7 @@ public class WeiboController {
 
 	/* 微博内容 */
 	private LinkedList<Status> mWeiboList;
+
 	/* 最新的微博list */
 	private StatusList mLastStatuses;
 
@@ -156,13 +157,28 @@ public class WeiboController {
 			Log.d(TAG, "更新条数: " + statuses.statusList.size());
 			List<Status> statusList = statuses.statusList;
 			if (statusList != null && statusList.size() > 0) {
-				mWeiboList.clear();
+
+				if (mWeiboList.size() > 0) {
+					if (requestNewWeibo(mWeiboList, statusList)) {
+						mWeiboList.clear();
+					}
+				}
+
 				mWeiboList.addAll(statusList);
 				mStatusAdapter.notifyDataSetChanged();
 				mViewWeiboHelper.actionAfterUpdate();
 			}
 		}
 		return statuses;
+	}
+
+	// 请求的是最新的微博，而不是当前时间线之前的微博
+	private boolean requestNewWeibo(List<Status> curWeiboList,
+			List<Status> reqWeiboList) {
+		long curLastID = Long
+				.parseLong(curWeiboList.get(curWeiboList.size() - 1).id);
+		long newFirstID = Long.parseLong(reqWeiboList.get(0).id);
+		return newFirstID > curLastID;
 	}
 
 	public WeiboItemAdapter getAdapter() {
@@ -220,7 +236,6 @@ public class WeiboController {
 				// onRefreshComplete 放在这里也不行
 				new GetLatestDataTask().execute();
 			}
-
 		};
 	}
 
@@ -231,8 +246,10 @@ public class WeiboController {
 
 			if (PullToRefreshBase.Mode.PULL_FROM_START == getTimeLineView()
 					.getCurrentMode()) {
+				// 下拉
 				requestTimeLine(true);
 			} else {
+				// 上拉
 				requestTimeLine(false);
 			}
 

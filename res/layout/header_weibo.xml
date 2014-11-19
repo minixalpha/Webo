@@ -14,10 +14,6 @@
         style="@style/ScreenName" />
 
     <TextView
-        android:id="@+id/source"
-        style="@style/WeiboSource" />
-
-    <TextView
         android:id="@+id/create_at"
         style="@style/WeiboCreateAt" />
 

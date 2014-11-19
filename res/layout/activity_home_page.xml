@@ -12,6 +12,7 @@
         android:id="@+id/timeline"
         style="@style/CommonListView"
         android:dividerHeight="5dp"
-        ptr:ptrAnimationStyle="flip" />
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrMode="both" />
 
 </LinearLayout>
